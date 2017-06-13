@@ -1,21 +1,15 @@
 $(document).ready(function () {
   // Hide inactive pages
-  $('#portfolio, #cv, #resume').hide();
+  $('#portfolio, #cv, #resume, #cv-employment, #cv-teaching, #cv-publications').hide();
 
-  $('#about-button').click(function () {
-    togglePage('about');
+  $('#about-button, #portfolio-button, #cv-button, #resume-button').click(function () {
+    var pageName = $(this).attr('id').replace('-button', '');
+    togglePage(pageName);
   });
 
-  $('#portfolio-button').click(function () {
-    togglePage('portfolio');
-  });
-
-  $('#cv-button').click(function () {
-    togglePage('cv');
-  });
-
-  $('#resume-button').click(function () {
-    togglePage('resume');
+  $('#cv-education-tab, #cv-employment-tab, #cv-teaching-tab, #cv-publications-tab').click(function () {
+    var tabName = $(this).attr('id').replace('-tab', '');
+    toggleCVSection(tabName);
   });
 
   $('#contact-button').click(function () {
@@ -34,4 +28,11 @@ function togglePage (activatePage) {
   $('#about-button, #portfolio-button, #cv-button, #resume-button').removeClass('active');
   $('#' + activatePage).show(400);
   $('#' + activatePage + '-button').addClass('active');
+}
+
+function toggleCVSection (activateSection) {
+  $('#cv-education, #cv-employment, #cv-teaching, #cv-publications').hide(400);
+  $('#cv-education-tab, #cv-employment-tab, #cv-teaching-tab, #cv-publications-tab').removeClass('active');
+  $('#' + activateSection).show(400);
+  $('#' + activateSection + '-tab').addClass('active');
 }
