@@ -1959,24 +1959,26 @@
       </div>
       <div class="content">
         <div class="description">
-          <form class="ui form">
+          <form id="contact-form" class="ui form"
+            action="https://formspree.io/hireme@kelsiemcwilliams.com"
+            method="POST">
             <div class="fields">
               <div class="field">
                 <label>First name</label>
-                <input type="text" placeholder="First Name">
+                <input type="text" name="firstname" placeholder="First Name">
               </div>
               <div class="field">
                 <label>Last name</label>
-                <input type="text" placeholder="Last Name">
+                <input type="text" name="lastname" placeholder="Last Name">
               </div>
             </div>
             <div class="field">
               <label>Email</label>
-              <input type="email" name="email" placeholder="Email Address">
+              <input type="email" name="_replyto" placeholder="Email Address">
             </div>
             <div class="field">
               <label>Message</label>
-              <textarea></textarea>
+              <textarea name="message"></textarea>
             </div>
           </form>
         </div>

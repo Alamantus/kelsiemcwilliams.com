@@ -35,7 +35,7 @@ $(document).ready(function () {
     $('#contact')
     .modal({
       onApprove: function () {
-        console.log('sent!');
+        $('#contact-form').submit();
       },
     })
     .modal('show');
