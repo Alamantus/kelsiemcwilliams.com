@@ -1,8 +1,13 @@
-#page {
+body {
   background-image: url('../images/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+}
+
+a {
+  word-wrap: break-word;
 }
 
 #page-content {
@@ -15,4 +20,15 @@
 }
 #content p {
   font-size: 1.15em;
+}
+
+.small-caps {
+  font-variant: small-caps;
+}
+
+.title.row {
+  padding-bottom: 5px !important;
+}
+.sub.row {
+  padding-top: 5px !important;
 }
