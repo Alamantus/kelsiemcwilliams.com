@@ -1,8 +1,8 @@
 var sitePages = [
-  '#about',
-  '#portfolio',
-  '#cv',
-  '#resume',
+  '#about-page',
+  '#resume-page',
+  '#portfolio-page',
+  '#cv-page',
 ];
 var cvPages = [
   '#cv-education',
@@ -18,12 +18,20 @@ var cvPages = [
 
 $(document).ready(function () {
   // Hide inactive pages
-  $(sitePages.slice(1).join(', ')).hide();
   $(cvPages.slice(1).join(', ')).hide();
+  $(sitePages.slice(1).join(', ')).hide(function () {
+    if(document.location.hash){
+      var targetPage = document.location.hash + '-page';
+      if (sitePages.indexOf(targetPage) >= 0) {
+        togglePage(targetPage.substr(1));
+      }
+    }
+  });
 
   $(sitePages.map(mapPageButtons).join(', ')).click(function () {
-    var pageName = $(this).attr('id').replace('-button', '');
+    var pageName = $(this).attr('id').replace('-button', '-page');
     togglePage(pageName);
+    document.location.hash = pageName.replace('-page', '');
   });
 
   $(cvPages.map(mapCVTabs).join(', ')).click(function () {
@@ -43,7 +51,7 @@ $(document).ready(function () {
 });
 
 function mapPageButtons (item) {
-  return item + '-button';
+  return item.replace('-page', '-button');
 }
 
 function mapCVTabs (item) {
