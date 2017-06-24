@@ -29,10 +29,11 @@ $(document).ready(function () {
     }
   });
 
-  $(sitePages.map(mapPageButtons).join(', ')).click(function () {
+  $(sitePages.map(mapPageButton).join(', ')).click(function () {
     var pageName = $(this).attr('id').replace('-button', '-page');
+    var pageHash = pageName.replace('-page', '');
     togglePage(pageName);
-    document.location.hash = pageName.replace('-page', '');
+    history.pushState({page: pageHash}, pageHash, '#' + pageHash);
   });
 
   $(cvPages.map(mapCVTabs).join(', ')).click(function () {
@@ -49,7 +50,7 @@ $(document).ready(function () {
   });
 });
 
-function mapPageButtons (item) {
+function mapPageButton (item) {
   return item.replace('-page', '-button');
 }
 
@@ -66,10 +67,10 @@ function togglePage (activatePage) {
   }
 
   $(sitePagesExcludingActivated.join(', ')).hide(400);
-  $(sitePagesExcludingActivated.map(mapPageButtons).join(', ')).removeClass('active');
+  $(sitePagesExcludingActivated.map(mapPageButton).join(', ')).removeClass('active');
 
   $('#' + activatePage).show(400);
-  $('#' + activatePage + '-button').addClass('active');
+  $('#' + mapPageButton(activatePage)).addClass('active');
 }
 
 function toggleCVSection (activateSection) {
