@@ -1,0 +1,1 @@
+a:1:{i:0;a:4:{s:7:"dirname";s:38:"content/kelsie/blog/uncategorized/post";s:8:"basename";s:59:"2017-06-24-00-16-59_first,greeting_obligatory-first-post.md";s:9:"extension";s:2:"md";s:8:"filename";s:56:"2017-06-24-00-16-59_first,greeting_obligatory-first-post";}}
