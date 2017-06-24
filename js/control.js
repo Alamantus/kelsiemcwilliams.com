@@ -3,6 +3,7 @@ var sitePages = [
   '#resume-page',
   '#portfolio-page',
   '#cv-page',
+  '#contact-page',
 ];
 var cvPages = [
   '#cv-education',
@@ -39,14 +40,12 @@ $(document).ready(function () {
     toggleCVSection(tabName);
   });
 
-  $('#contact-button').click(function () {
-    $('#contact')
-    .modal({
-      onApprove: function () {
-        $('#contact-form').submit();
-      },
-    })
-    .modal('show');
+  $('#contact-send-button').click(function () {
+    if (validateContactForm()) {
+      $('#contact-form').submit();
+      $('#contact-send-button').text('Sent!')
+      .addClass('disabled');
+    }
   });
 });
 
@@ -86,4 +85,35 @@ function toggleCVSection (activateSection) {
 
   $('#' + activateSection).show(400);
   $('#' + activateSection + '-tab').addClass('active');
+}
+
+function validateContactForm () {
+  var firstName = $('#contact-firstName').val().trim(),
+    lastName = $('#contact-lastName').val().trim(),
+    email = $('#contact-email').val().trim(),
+    message = $('#contact-message').val().trim();
+
+  $('#contact-errorMessage').html('').hide();
+
+  if (firstName !== ''
+      && email !== '' && email.match(/^.*@.*$/i)
+      && message !== '') {
+    $('#contact-firstName').val(firstName);
+    $('#contact-lastName').val(lastName);
+    $('#contact-email').val(email);
+    $('#contact-message').val(message);
+
+    return true;
+  } else {
+    var errorMessage = '';
+
+    if (firstName === '') errorMessage += '<li>You must enter your first name</li>';
+    if (email === '') errorMessage += '<li>You must enter an email address</li>';
+    if (!email.match(/^.*@.*$/i)) errorMessage += '<li>You must enter a valid email address</li>';
+    if (message === '') errorMessage += '<li>You must enter a message</li>';
+
+    $('#contact-errorMessage').html('<p><ul class="ui list">' + errorMessage + '</ul></p>').show();
+  }
+
+  return false;
 }
