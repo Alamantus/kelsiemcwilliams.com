@@ -54,11 +54,12 @@
         </div>
       </h1>
 
-      <div class="ui four teal inverted item menu">
+      <div class="ui five teal inverted item menu">
         <a id="about-button" class="active item">About</a>
         <a id="resume-button" class="item">Resume</a>
         <a id="portfolio-button" class="item">Portfolio</a>
         <a id="cv-button" class="item">CV</a>
+        <a id="contact-button" class="item">Contact</a>
       </div>
 
     </header>
@@ -2021,59 +2022,55 @@
         </div>
       </article>
 
+      <article id="contact-page" class="ui segment">
+        <h1 class="ui header">
+          Contact Kelsie
+        </h1>
+        <div class="content">
+          <div class="description">
+            <form id="contact-form" class="ui form"
+              action="https://formspree.io/hireme@kelsiemcwilliams.com"
+              method="POST">
+              <div class="fields">
+                <div class="field">
+                  <label>First name</label>
+                  <input type="text" name="firstname" id="contact-firstName" placeholder="First Name">
+                </div>
+                <div class="field">
+                  <label>Last name</label>
+                  <input type="text" name="lastname" id="contact-lastName" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input type="email" name="_replyto" id="contact-email" placeholder="Email Address">
+              </div>
+              <div class="field">
+                <label>Message</label>
+                <textarea name="message" id="contact-message"></textarea>
+              </div>
+              <div id="contact-errorMessage" class="ui error message" style="display:none;"></div>
+              <div class="field">
+                <a id="contact-send-button" class="ui positive button">
+                  Send
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </article>
+
     </section>
 
     <footer class="ui container">
       <hr class="ui divider">
 
       <div class="ui grid">
-        <div class="ten wide column">
+        <div class="sixteen wide column">
           &copy; Kelsie McWilliams
-        </div>
-        <div class="six wide column">
-          <a id="contact-button" class="ui teal right floated button">
-            Contact
-          </a>
         </div>
       </div>
     </footer>
-
-    <div id="contact" class="ui modal">
-      <div class="header">
-        Contact Kelsie
-      </div>
-      <div class="content">
-        <div class="description">
-          <form id="contact-form" class="ui form"
-            action="https://formspree.io/hireme@kelsiemcwilliams.com"
-            method="POST">
-            <div class="fields">
-              <div class="field">
-                <label>First name</label>
-                <input type="text" name="firstname" placeholder="First Name">
-              </div>
-              <div class="field">
-                <label>Last name</label>
-                <input type="text" name="lastname" placeholder="Last Name">
-              </div>
-            </div>
-            <div class="field">
-              <label>Email</label>
-              <input type="email" name="_replyto" placeholder="Email Address">
-            </div>
-            <div class="field">
-              <label>Message</label>
-              <textarea name="message"></textarea>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="actions">
-        <div id="contact-send-button" class="ui positive right button">
-          Send
-        </div>
-      </div>
-    </div>
 
   </section>
 </section>
