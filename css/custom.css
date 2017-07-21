@@ -35,6 +35,10 @@ p.center.aligned {
   font-variant: small-caps;
 }
 
+.centered {
+  text-align: center;
+}
+
 .title.row {
   padding-bottom: 5px !important;
 }

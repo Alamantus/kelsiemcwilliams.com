@@ -55,6 +55,24 @@ $(document).ready(function () {
   $('.copyEditingServiceModalButton').click(function () {
     $('#copyEditingServiceModal').modal('show');
   });
+
+  $('#scientificWritingSample').modal();
+  $('#scientificWritingSampleContent').load('./files/scientific-writing-sample.html');
+  $('.scientificWritingSampleButton').click(function () {
+    $('#scientificWritingSample').modal('show');
+  });
+
+  $('#litReviewSample').modal();
+  $('#litReviewSampleContent').load('./files/literature-review-sample.html');
+  $('.litReviewSampleButton').click(function () {
+    $('#litReviewSample').modal('show');
+  });
+
+  $('#studentSuccessSample').modal();
+  $('#studentSuccessSampleContent').load('./files/student-success-story-sample.html');
+  $('.studentSuccessSampleButton').click(function () {
+    $('#studentSuccessSample').modal('show');
+  });
 });
 
 function mapPageButton (item) {
