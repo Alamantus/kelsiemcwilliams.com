@@ -2,6 +2,7 @@
 <!--d I had woken up to several frantic texts. Are you ok? Text me. Call me. Please let me know that you’re safe. Much to my mother’s chagrin, my phone d-->
 <!--tag guns,Aurora Theater Shooting,Colorado,memorial,trauma,shooting,death,memory tag-->
 <!--image https://cdn-images-1.medium.com/max/1600/1*_jaAF4RMn8yZpi2HA-UaJA.jpeg image-->
+<!--caption Street corner memorial for Aurora theater shooting on July 20, 2012. Courtesy of Getty Images. caption-->
 
 I had woken up to several frantic texts.
 
