@@ -433,6 +433,8 @@ post('/add/content', function () {
     $video = from($_REQUEST, 'video');
     $quote = from($_REQUEST, 'quote');
 
+    $caption = from($_REQUEST, 'caption');
+
     $proper = is_csrf_proper(from($_REQUEST, 'csrf_token'));
 
     $title = from($_REQUEST, 'title');
@@ -492,10 +494,10 @@ post('/add/content', function () {
     if (!empty($is_image)) {
         if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($image)) {
             if (!empty($url)) {
-                add_content($title, $tag, $url, $content, $user, $description, $image, $draft, $category, 'image');
+                add_content($title, $tag, $url, $content, $user, $description, $image, $draft, $category, 'image', $caption);
             } else {
                 $url = $title;
-                add_content($title, $tag, $url, $content, $user, $description, $image, $draft, $category, 'image');
+                add_content($title, $tag, $url, $content, $user, $description, $image, $draft, $category, 'image', $caption);
             }
         } else {
             $message['error'] = '';
@@ -536,10 +538,10 @@ post('/add/content', function () {
     if (!empty($is_video)) {
         if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($video)) {
             if (!empty($url)) {
-                add_content($title, $tag, $url, $content, $user, $description, $video, $draft, $category, 'video');
+                add_content($title, $tag, $url, $content, $user, $description, $video, $draft, $category, 'video', $caption);
             } else {
                 $url = $title;
-                add_content($title, $tag, $url, $content, $user, $description, $video, $draft, $category, 'video');
+                add_content($title, $tag, $url, $content, $user, $description, $video, $draft, $category, 'video', $caption);
             }
         } else {
             $message['error'] = '';
@@ -580,10 +582,10 @@ post('/add/content', function () {
     if (!empty($is_audio)) {
         if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($audio)) {
             if (!empty($url)) {
-                add_content($title, $tag, $url, $content, $user, $description, $audio, $draft, $category, 'audio');
+                add_content($title, $tag, $url, $content, $user, $description, $audio, $draft, $category, 'audio', $caption);
             } else {
                 $url = $title;
-                add_content($title, $tag, $url, $content, $user, $description, $audio, $draft, $category, 'audio');
+                add_content($title, $tag, $url, $content, $user, $description, $audio, $draft, $category, 'audio', $caption);
             }
         } else {
             $message['error'] = '';
@@ -624,10 +626,10 @@ post('/add/content', function () {
     if (!empty($is_quote)) {
         if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($quote)) {
             if (!empty($url)) {
-                add_content($title, $tag, $url, $content, $user, $description, $quote, $draft, $category, 'quote');
+                add_content($title, $tag, $url, $content, $user, $description, $quote, $draft, $category, 'quote', $caption);
             } else {
                 $url = $title;
-                add_content($title, $tag, $url, $content, $user, $description, $quote, $draft, $category, 'quote');
+                add_content($title, $tag, $url, $content, $user, $description, $quote, $draft, $category, 'quote', $caption);
             }
         } else {
             $message['error'] = '';
@@ -668,10 +670,10 @@ post('/add/content', function () {
     if (!empty($is_link)) {
         if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($link)) {
             if (!empty($url)) {
-                add_content($title, $tag, $url, $content, $user, $description, $link, $draft, $category, 'link');
+                add_content($title, $tag, $url, $content, $user, $description, $link, $draft, $category, 'link', $caption);
             } else {
                 $url = $title;
-                add_content($title, $tag, $url, $content, $user, $description, $link, $draft, $category, 'link');
+                add_content($title, $tag, $url, $content, $user, $description, $link, $draft, $category, 'link', $caption);
             }
         } else {
             $message['error'] = '';
@@ -2011,6 +2013,7 @@ get('/post/:name', function ($name) {
         'prev' => has_prev($prev),
         'next' => has_next($next),
         'type' => $var,
+        'caption' => $current->caption,
         'is_post' => true,
     ), $layout);
 
@@ -2057,6 +2060,7 @@ get('/post/:name/edit', function ($name) {
                 'canonical' => site_url(),
                 'p' => $current,
                 'type' => $type,
+                'caption' => $post->caption,
                 'is_admin' => true,
                 'bodyclass' => 'edit-post',
                 'breadcrumb' => '<span typeof="v:Breadcrumb"><a property="v:title" rel="v:url" href="' . site_url() . '">' . config('breadcrumb.home') . '</a></span> &#187; ' . $current->tagb . ' &#187; ' . $current->title
@@ -2095,6 +2099,7 @@ post('/post/:name/edit', function () {
     $is_audio = from($_REQUEST, 'is_audio');
     $quote = from($_REQUEST, 'quote');
     $is_quote = from($_REQUEST, 'is_quote');
+    $caption = from($_REQUEST, 'caption');
     $tag = from($_REQUEST, 'tag');
     $url = from($_REQUEST, 'url');
     $content = from($_REQUEST, 'content');
@@ -2129,31 +2134,31 @@ post('/post/:name/edit', function () {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $image, $revertPost, $publishDraft, $category, 'image');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $image, $revertPost, $publishDraft, $category, 'image', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($video)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $video, $revertPost, $publishDraft, $category, 'video');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $video, $revertPost, $publishDraft, $category, 'video', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($link)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $link, $revertPost, $publishDraft, $category, 'link');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $link, $revertPost, $publishDraft, $category, 'link', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($quote)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_contente($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $quote, $revertPost, $publishDraft, $category, 'quote');
+        edit_contente($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $quote, $revertPost, $publishDraft, $category, 'quote', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($audio)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $audio, $revertPost, $publishDraft, $category, 'audio');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $audio, $revertPost, $publishDraft, $category, 'audio', $caption);
         
     }  else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($is_post)) {
         if (empty($url)) {
@@ -2213,6 +2218,7 @@ post('/post/:name/edit', function () {
             'postQuote' => $quote,
             'postAudio' => $audio,
             'postTag' => $tag,
+            'postCaption' => $caption,
             'postUrl' => $url,
             'type' => $type,
             'is_admin' => true,
@@ -3079,6 +3085,7 @@ post('/:year/:month/:name/edit', function () {
     $is_audio = from($_REQUEST, 'is_audio');
     $quote = from($_REQUEST, 'quote');
     $is_quote = from($_REQUEST, 'is_quote');
+    $caption = from($_REQUEST, 'caption');
     $tag = from($_REQUEST, 'tag');
     $url = from($_REQUEST, 'url');
     $content = from($_REQUEST, 'content');
@@ -3113,31 +3120,31 @@ post('/:year/:month/:name/edit', function () {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $image, $revertPost, $publishDraft, $category, 'image');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $image, $revertPost, $publishDraft, $category, 'image', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($video)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $video, $revertPost, $publishDraft, $category, 'video');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $video, $revertPost, $publishDraft, $category, 'video', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($link)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $link, $revertPost, $publishDraft, $category, 'link');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $link, $revertPost, $publishDraft, $category, 'link', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($quote)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $quote, $revertPost, $publishDraft, $category, 'quote');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $quote, $revertPost, $publishDraft, $category, 'quote', $caption);
         
     } else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($audio)) {
         if (empty($url)) {
             $url = $title;
         }
-        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $audio, $revertPost, $publishDraft, $category, 'audio');
+        edit_content($title, $tag, $url, $content, $oldfile, $destination, $description, $dateTime, $audio, $revertPost, $publishDraft, $category, 'audio', $caption);
         
     }  else if ($proper && !empty($title) && !empty($tag) && !empty($content) && !empty($is_post)) {
         if (empty($url)) {
@@ -3196,6 +3203,7 @@ post('/:year/:month/:name/edit', function () {
             'postLink' => $link,
             'postQuote' => $quote,
             'postAudio' => $audio,
+            'postCaption' => $caption,
             'postTag' => $tag,
             'postUrl' => $url,
             'type' => $type,

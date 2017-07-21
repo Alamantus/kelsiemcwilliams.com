@@ -19,6 +19,8 @@ $oldvideo = get_content_tag('video', $content);
 $oldlink = get_content_tag('link', $content);
 $oldquote = get_content_tag('quote', $content);
 
+$oldcaption = get_content_tag('caption', $content);
+
 $dir = substr($url, 0, strrpos($url, '/'));
 $isdraft = explode('/', $dir);
 $oldurl = explode('_', $url);
@@ -134,6 +136,11 @@ if (config('permalink.type') == 'post') {
         <br>
         <textarea rows="3" cols="20" class="text <?php if (isset($postLink)) { if (empty($postLink)) { echo 'error';} } ?>" name="link"><?php echo $oldlink ?></textarea>
         <input type="hidden" name="is_link" value="is_link">
+        <?php endif;?>
+        
+        <?php if ($type == 'is_audio' || $type == 'is_video' || $type == 'is_image' || $type == 'is_quote' || $type == 'is_link'):?>
+        Featured Caption<br>
+        <input type="text" name="caption" class="text <?php if (isset($postCaption)) { if (empty($postCaption)) { echo 'error'; } } ?>" value="<?php echo $oldcaption ?>"/><br><br>
         <?php endif;?>
         
         <?php if ($type == 'is_post'):?>

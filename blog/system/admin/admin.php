@@ -82,12 +82,13 @@ function remove_accent($str)
 }
 
 // Add content
-function add_content($title, $tag, $url, $content, $user, $description = null, $media = null, $draft, $category, $type)
+function add_content($title, $tag, $url, $content, $user, $description = null, $media = null, $draft, $category, $type, $caption = null)
 {
 
     $post_date = date('Y-m-d-H-i-s');
     $post_title = safe_html($title);
     $post_media = preg_replace('/\s\s+/', ' ', strip_tags($media));
+    $post_media_caption = preg_replace('/\s\s+/', ' ', strip_tags($caption));
     $pt = safe_tag($tag);
     $post_tag = strtolower(preg_replace(array('/[^a-zA-Z0-9,. \-\p{L}]/u', '/[ -]+/', '/^-|-$/'), array('', '-', ''), remove_accent($pt)));
     $post_tagmd = preg_replace(array('/[^a-zA-Z0-9,. \-\p{L}]/u', '/[ -]+/', '/^-|-$/'), array('', ' ', ''), $pt);
@@ -109,8 +110,13 @@ function add_content($title, $tag, $url, $content, $user, $description = null, $
         $post_media = "\n<!--" .$type. " " . $post_media . " " .$type. "-->";
     } else {
         $post_media = "";
+    }   
+    if ($caption!== null) {
+        $post_media_caption = "\n<!--caption " . $post_media_caption . " caption-->";
+    } else {
+        $post_media_caption = "";
     }        
-    $post_content = "<!--t " . $post_title . " t-->" . $post_description . $tagmd . $post_media . "\n\n" . $content;
+    $post_content = "<!--t " . $post_title . " t-->" . $post_description . $tagmd . $post_media . $post_media_caption . "\n\n" . $content;
 
     if (!empty($post_title) && !empty($post_tag) && !empty($post_url) && !empty($post_content)) {
         
@@ -149,7 +155,7 @@ function add_content($title, $tag, $url, $content, $user, $description = null, $
 }
 
 // Edit content
-function edit_content($title, $tag, $url, $content, $oldfile, $destination = null, $description = null, $date = null, $media = null, $revertPost, $publishDraft, $category, $type)
+function edit_content($title, $tag, $url, $content, $oldfile, $destination = null, $description = null, $date = null, $media = null, $revertPost, $publishDraft, $category, $type, $caption = null)
 {
     $oldurl = explode('_', $oldfile);
     $dir = explode('/', $oldurl[0]);
@@ -161,6 +167,7 @@ function edit_content($title, $tag, $url, $content, $oldfile, $destination = nul
 
     $post_title = safe_html($title);
     $post_media = preg_replace('/\s\s+/', ' ', strip_tags($media));
+    $post_media_caption = preg_replace('/\s\s+/', ' ', strip_tags($caption));
     $pt = safe_tag($tag);
     $post_tag = strtolower(preg_replace(array('/[^a-zA-Z0-9,. \-\p{L}]/u', '/[ -]+/', '/^-|-$/'), array('', '-', ''), remove_accent($pt)));
     $post_tagmd = preg_replace(array('/[^a-zA-Z0-9,. \-\p{L}]/u', '/[ -]+/', '/^-|-$/'), array('', ' ', ''), $pt);
@@ -182,8 +189,13 @@ function edit_content($title, $tag, $url, $content, $oldfile, $destination = nul
         $post_media = "\n<!--" . $type . " " . $post_media. " " . $type . "-->";
     } else {
         $post_media = "";
+    }     
+    if ($caption !== null) {
+        $post_media_caption = "\n<!--caption " . $post_media_caption. " caption-->";
+    } else {
+        $post_media_caption = "";
     }    
-    $post_content = "<!--t " . $post_title . " t-->" . $post_description . $tagmd . $post_media . "\n\n" . $content;
+    $post_content = "<!--t " . $post_title . " t-->" . $post_description . $tagmd . $post_media . $post_media_caption . "\n\n" . $content;
 
     if (!empty($post_title) && !empty($post_tag) && !empty($post_url) && !empty($post_content)) {
     

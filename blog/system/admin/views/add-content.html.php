@@ -92,6 +92,11 @@ $desc = get_category_info(null);
         <br>
         <?php endif;?>
         
+        <?php if ($type == 'is_audio' || $type == 'is_video' || $type == 'is_image' || $type == 'is_quote' || $type == 'is_link'):?>
+        Featured Caption<br>
+        <input type="text" name="caption" class="text <?php if (isset($postCaption)) { if (empty($postCaption)) { echo 'error'; } } ?>" value="<?php echo $oldcaption ?>"/><br><br>
+        <?php endif;?>
+        
         <?php if ($type == 'is_post'):?>
         <input type="hidden" name="is_post" value="is_post">
         <?php endif;?>
