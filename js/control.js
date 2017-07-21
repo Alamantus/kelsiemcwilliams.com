@@ -3,7 +3,7 @@ var sitePages = [
   '#resume-page',
   '#portfolio-page',
   '#cv-page',
-  '#contact-page',
+  '#hireme-page',
 ];
 var cvPages = [
   '#cv-education',
@@ -47,6 +47,13 @@ $(document).ready(function () {
       $('#contact-send-button').text('Sent!')
       .addClass('disabled');
     }
+  });
+
+  // Helper Popups
+  $('#pagesPerHourHelper').popup();
+  $('#copyEditingServiceModal').modal();
+  $('.copyEditingServiceModalButton').click(function () {
+    $('#copyEditingServiceModal').modal('show');
   });
 });
 
