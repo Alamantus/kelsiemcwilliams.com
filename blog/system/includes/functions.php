@@ -2781,7 +2781,7 @@ EOF;
     echo '<li><a href="' . $base . 'admin/config">Config</a></li>';
     }
     echo '<li><a href="' . $base . 'admin/clear-cache">Clear cache</a></li>';
-    echo '<li><a href="' . $base . 'admin/update">Update</a></li>';
+    // echo '<li><a href="' . $base . 'admin/update">Update</a></li>';
     echo '<li><a href="' . $base . 'logout">Logout</a></li>';
 
     echo '</ul></div>';
