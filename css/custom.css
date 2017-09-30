@@ -9,6 +9,9 @@ body {
 a {
   word-wrap: break-word;
 }
+.menu a.item {
+  word-wrap: normal;
+}
 
 p.center.aligned {
   text-align: center;
