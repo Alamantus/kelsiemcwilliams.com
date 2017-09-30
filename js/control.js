@@ -73,6 +73,30 @@ $(document).ready(function () {
   $('.studentSuccessSampleButton').click(function () {
     $('#studentSuccessSample').modal('show');
   });
+
+  $('#newsArticle1Sample').modal();
+  $('#newsArticle1SampleContent').load('./files/news-article-sample-1.html');
+  $('.newsArticle1SampleButton').click(function () {
+    $('#newsArticle1Sample').modal('show');
+  });
+
+  $('#newsArticle2Sample').modal();
+  $('#newsArticle2SampleContent').load('./files/news-article-sample-2.html');
+  $('.newsArticle2SampleButton').click(function () {
+    $('#newsArticle2Sample').modal('show');
+  });
+
+  $('#newsArticle3Sample').modal();
+  $('#newsArticle3SampleContent').load('./files/news-article-sample-3.html');
+  $('.newsArticle3SampleButton').click(function () {
+    $('#newsArticle3Sample').modal('show');
+  });
+
+  $('#satireSample').modal();
+  $('#satireSampleContent').load('./files/satire-sample.html');
+  $('.satireSampleButton').click(function () {
+    $('#satireSample').modal('show');
+  });
 });
 
 function mapPageButton (item) {
