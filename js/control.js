@@ -37,12 +37,9 @@ $(document).ready(function () {
     toggleCVSection(tabName);
   });
 
-  $('#contact-send-button').click(function () {
-    if (validateContactForm()) {
-      $('#contact-form').submit();
-      $('#contact-send-button').text('Sent!')
-      .addClass('disabled');
-    }
+  $('#contact-button').click(function () {
+    togglePage('hireme-page');
+    history.pushState({page: 'hireme'}, 'hireme', '#' + 'hireme');
   });
 
   // Helper Popups
