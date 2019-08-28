@@ -10,11 +10,7 @@ var cvPages = [
   '#cv-employment',
   '#cv-teaching',
   '#cv-publications',
-  '#cv-administration',
-  '#cv-trainings',
-  '#cv-development',
   '#cv-presentations',
-  '#cv-volunteer',
 ];
 
 $(document).ready(function () {
