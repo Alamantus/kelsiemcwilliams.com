@@ -52,6 +52,12 @@ $(document).ready(function () {
     $('#copyEditingServiceModal').modal('show');
   });
 
+  $('#medicalWritingSample').modal();
+  $('#medicalWritingSampleContent').load('./files/medical-writing-sample.html');
+  $('.medicalWritingSampleButton').click(function () {
+    $('#medicalWritingSample').modal('show');
+  });
+
   $('#scientificWritingSample').modal();
   $('#scientificWritingSampleContent').load('./files/scientific-writing-sample.html');
   $('.scientificWritingSampleButton').click(function () {
